@@ -1,5 +1,6 @@
+import 'package:bedtime_stories/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:legend_login/profile.dart';
+
 
 class ContentPage extends StatefulWidget {
   @override

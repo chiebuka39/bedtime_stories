@@ -1,6 +1,7 @@
+import 'package:bedtime_stories/add_story.dart';
+import 'package:bedtime_stories/screens/my_home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:legend_login/add_story.dart';
-import 'package:legend_login/main.dart';
+
 
 class RegisterPage extends StatefulWidget {
   @override
