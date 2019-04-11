@@ -76,26 +76,34 @@ class _ContentPageState extends State<ContentPage> {
               ),
             ),
           ),
-          Container(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 20.0, right: 10.0, top: 10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 150.0),
-                    hintText: 'And the fish happened to grow wings...',
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xffDADAED), width: 1.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color(0xffDADAED), width: 1.0))),
+         Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 10.0, ),
+            child: new Container(
+              //   height: 200.0,
+              decoration:
+                  new BoxDecoration(border: new Border.all(color: Color(0xffDADAED)),
+                  borderRadius: BorderRadius.circular(4.0)
+                  ),
+
+              child: Padding(
+                padding: const EdgeInsets.only(left:8.0),
+                child: new TextField(
+                    maxLines: 20,
+                    style: new TextStyle(
+                        fontSize: 16.0,
+                        // height: 2.0,
+                        color: Colors.black),
+                    decoration: const InputDecoration(
+                      hintText: "And the fish happened to grow wings...",                      
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20.0),
+                    )),
               ),
             ),
           ),
+
+          
           SizedBox(
-            height: 90,
+            height: 30,
           ),
           Row(
             children: <Widget>[
