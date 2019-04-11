@@ -33,92 +33,91 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: Container(
-              height: 250.0,
-              width: 250.0,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-
-                  // borderRadius: BorderRadius.circular(100.0),
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage(
-                        'assets/1.jpeg',
+      body: new Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top:33.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                  width: 190.0,
+                  height: 190.0,
+                  decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: new DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage('assets/1.jpeg')))),
+                              SizedBox(height: 25.0,),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 80),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            'Name',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 45.0,
+                          ),
+                          Text(
+                            'Danny Johnson',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
+                          )
+                        ],
                       ),
-                      fit: BoxFit.cover)),
-            ),
+                      SizedBox(
+                        height: 31.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            'Email',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 45.0,
+                          ),
+                          Text(
+                            'djohn@hotmail.com',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 31.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            'Phone No',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Text(
+                            '+2348076655489',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 80),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Name',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 45.0,
-                      ),
-                      Text(
-                        'Danny Johnson',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
-                      )
-                    ],
-                  ),
-                   SizedBox(
-                        height: 31.0,
-                      ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Email',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 45.0,
-                      ),
-                      Text(
-                        'djohn@hotmail.com',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
-                      )
-                    ],
-                  ),
-                   SizedBox(
-                        height: 31.0,
-                      ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        'Phone No',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Text(
-                        '+2348076655489',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
