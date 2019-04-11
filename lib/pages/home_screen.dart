@@ -1,127 +1,225 @@
+import 'dart:io';
+
+import 'package:bedtime_stories/add_story.dart';
+import 'package:bedtime_stories/favourite.dart';
+import 'package:bedtime_stories/home_body.dart';
+import 'package:bedtime_stories/mycategory.dart';
+import 'package:bedtime_stories/pages/profile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bedtime_stories/utils/bedtime.dart';
+import 'package:bedtime_stories/utils/my_navigator.dart';
 
-class HomeScreen extends StatefulWidget {
+
+
+class HomeScreen extends StatelessWidget {
+  final topBar = new AppBar(
+    backgroundColor: Colors.white,
+    centerTitle: true,
+    title: new Text("Home"),
+    leading: new Container(
+      height: 40.0,
+      width: 40.0,
+      decoration: new BoxDecoration(
+        shape: BoxShape.circle,
+        image: new DecorationImage(
+            fit: BoxFit.fill,
+            image: new AssetImage("assets/logo_hng2.png")
+        ),
+      ),
+    ),
+
+    actions: <Widget>[
+      new IconButton(icon: new Icon(Icons.search),
+        onPressed: (){},
+      ),
+
+      new IconButton(icon: new Icon(Icons.menu),
+        onPressed: ()=>Draw()
+      ),
+    ],
+  );
+
   @override
-  _HomeScreenState createState() => new _HomeScreenState();
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      debugShowCheckedModeBanner: false,
+        theme:new ThemeData(
+            primaryColor: defaultTargetPlatform==TargetPlatform.iOS
+                ? Colors.grey[50]
+                :null,
+            primarySwatch: Colors.deepPurple
+    ),
+    home: new Draw(),
+    /*routes: <String , WidgetBuilder>{
+        "/a":(BuildContext context) => new NewPage("New Page"),
+
+  }*/
+
+    );
+  }
+
+  
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  AnimationController animCtrl;
-  Animation<double> animation;
-
-  AnimationController animCtrl2;
-  Animation<double> animation2;
-
-  bool showFirst = true;
-
+class Draw extends StatefulWidget {
   @override
-  void initState() {
-    super.initState();
+  _DrawState createState() => _DrawState();
+}
 
-    // Animation init
-    animCtrl = new AnimationController(
-        duration: new Duration(milliseconds: 500), vsync: this);
-    animation = new CurvedAnimation(parent: animCtrl, curve: Curves.easeOut);
-    animation.addListener(() {
-      this.setState(() {});
-    });
-    animation.addStatusListener((AnimationStatus status) {});
-
-    animCtrl2 = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
-    animation2 = new CurvedAnimation(parent: animCtrl2, curve: Curves.easeOut);
-    animation2.addListener(() {
-      this.setState(() {});
-    });
-    animation2.addStatusListener((AnimationStatus status) {});
-  }
-
-  @override
-  void dispose() {
-    animCtrl.dispose();
-    super.dispose();
-  }
-
+class _DrawState extends State<Draw> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(Bedtime.name),
-        actions: <Widget>[
-          Padding(
-            child: Icon(Icons.search),
-            padding: const EdgeInsets.only(right: 10.0),
-          )
-        ],
-      ),
-      drawer: Drawer(),
-      body: new Center(
-          child: new Stack(
-        children: <Widget>[
-          new Center(
-            child: new DragTarget(onWillAccept: (_) {
-              print('red');
-              return true;
-            }, onAccept: (_) {
-              setState(() => showFirst = false);
-              animCtrl.forward();
-              animCtrl2.forward();
-            }, builder: (_, _1, _2) {
-              return new SizedBox.expand(
-                child: new Container(color: Colors.red),
-              );
-            }),
-          ),
-          new Center(
-            child: new DragTarget(onWillAccept: (_) {
-              print('green');
-              return true;
-            }, builder: (_, _1, _2) {
-              return new SizedBox.fromSize(
-                size: new Size(350.0, 350.0),
-                child: new Container(color: Colors.green),
-              );
-            }),
-          ),
-          new Stack(alignment: FractionalOffset.center, children: <Widget>[
-            new Align(
-              alignment: new Alignment(0.0, 0.5 - animation.value * 0.15),
-              child: new CardView(200.0 + animation.value * 60),
+      appBar: new AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: new Text("Home",style: new TextStyle(color: Colors.black87,fontSize: 15.0),),
+        leading: new Container(
+          height: 40.0,
+          width: 40.0,
+          decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+            image: new DecorationImage(
+                fit: BoxFit.fill,
+                image: new AssetImage("assets/profile.png")
             ),
-            new Align(
-                alignment: new Alignment(0.0, 0.35 - animation2.value * 0.35),
-                child: new InkWell(
-                  onTap: () => Navigator.of(context).push(
-                      new MaterialPageRoute(builder: (_) => new HomeScreen())),
-                  child: new CardView(260.0 + animation2.value * 80),
-                )),
-            new Draggable(
-              feedback: new CardView(340.0),
-              child: showFirst ? new CardView(340.0) : new Container(),
-              childWhenDragging: new Container(),
-            )
-          ]),
+          ),
+        ),
+
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.search),
+            color: Colors.black87,
+            onPressed: (){},
+
+          ),
+
+          new IconButton(icon: new Icon(Icons.menu),
+              onPressed: ()=>new Draw(),
+            color: Colors.black87,
+          ),
         ],
-      )),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.amber,
-        onPressed: () => {},
-        child: Icon(Icons.shopping_cart, color: Colors.white),
+
       ),
+
+
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(accountName: new Text(""), accountEmail: new Text(""),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: Theme.of(context).platform==TargetPlatform.iOS
+                    ?Colors.deepPurple
+                    :Colors.white,
+                backgroundImage: AssetImage("assets/profile.png"),
+
+              ),
+              otherAccountsPictures: <Widget>[
+                new Row(
+                  mainAxisAlignment:MainAxisAlignment.end,
+          children: <Widget>[
+                    new CircleAvatar(
+                      backgroundColor: Theme.of(context).platform==TargetPlatform.iOS
+                          ?Colors.deepPurple
+                          :Colors.white,
+
+                      child: new Text("X",style: new TextStyle(fontSize: 12.0),),
+                    )
+                  ],
+                ),
+
+              ],
+            ),
+
+            new ListTile(
+              title: new Text("Home"),
+              trailing: new Icon(Icons.home),
+              onTap:(){
+                Navigator.of(context).pop();
+
+              },
+
+            ),
+            new ListTile(
+              title: new Text("Add Strory"),
+              trailing: new Icon(Icons.add_circle),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context)=>
+                    new AddStoryPage()));
+              },
+            ),
+            new Divider(
+
+            ),
+            new ListTile(
+              title: new Text("Bookmark"),
+              trailing: new Icon(Icons.bookmark),
+              onTap:() {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                builder: (BuildContext context)=>
+                new Favourite()));
+              }
+
+            ),
+            new ListTile(
+                title: new Text("Favourite"),
+                trailing: new Icon(Icons.favorite),
+                onTap:() {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (BuildContext context)=>
+                      new Favourite()));
+                }
+
+            ),
+            new ListTile(
+              title: new Text("Category"),
+              trailing: new Icon(Icons.category),
+              onTap: (){
+                Navigator.of(context).pop();
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context)=>
+                    new Mycategory()));
+              },
+
+            ),
+      new ListTile(
+        title: new Text("Profile"),
+        trailing: new Icon(Icons.face),
+        onTap: (){
+          Navigator.of(context).pop();
+          Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context)=>
+              new ProfilePage()));
+        },
+      ),
+            new ListTile(
+              title: new Text("Close"),
+              trailing: new Icon(Icons.close),
+              onTap: (){
+                Navigator.of(context).pop();
+
+              },
+
+            ),
+            new ListTile(
+              title: new Text("Log Out"),
+              trailing: new Icon(Icons.close),
+              onTap: ()=>exit(0),
+            ),
+          ],
+        ),
+      ),
+      body: new HomeBody(),
+
     );
-  }
-}
 
-class CardView extends StatelessWidget {
-  final double cardSize;
-  CardView(this.cardSize);
-
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-        child: new SizedBox.fromSize(
-      size: new Size(cardSize, cardSize),
-    ));
   }
-}
+
+  }
+
+
+

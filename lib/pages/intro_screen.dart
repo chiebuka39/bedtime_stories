@@ -43,7 +43,7 @@ class IntroScreenState extends State<IntroScreen> {
   }
 
   void onDonePress() {
-    MyNavigator.goToHome(context);
+    MyNavigator.goToRegister(context);
   }
 
   void onSkipPress() {

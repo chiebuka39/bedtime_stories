@@ -10,10 +10,12 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_swiper : ^1.0.8
   intro_slider: ^1.0.8
+  font_awesome_flutter: ^8.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 # For information on the generic Dart part of this file, see the
@@ -36,6 +38,18 @@ flutter:
    - assets/walk1.png
    - assets/picture1.jpg
    - assets/logo_hng2.png
+   - assets/acad5.jpg
+   - assets/picture2.jpg
+   - assets/camera.png
+   - assets/dragon.png
+   - assets/logo.png
+   - assets/picture3.png
+   - assets/person.jpeg
+   - assets/profile.png
+   - assets/Line.png
+
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
